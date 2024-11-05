@@ -1,7 +1,9 @@
 package com.babysleep
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -26,6 +28,15 @@ class ChildActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_child)
 
+        findViewById<Button>(R.id.start_record).setOnClickListener {
+            // Start and stop recording
+        }
+
+        initializeCamera()
+
+    }
+
+    private fun initializeCamera() {
         openCamera()
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
@@ -56,7 +67,6 @@ class ChildActivity : AppCompatActivity() {
         } catch (exc: Exception) {
             Log.e("TAG", "Use case binding failed", exc)
         }
-
     }
 
     private fun openCamera() {
